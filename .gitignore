@@ -61,5 +61,5 @@ sysinfo.txt
 crashlytics-build.properties
 
 # ASSETS
-Assets/ARDK
+Assets/ARDK/Plugins
 Assets/ARDKExamples
