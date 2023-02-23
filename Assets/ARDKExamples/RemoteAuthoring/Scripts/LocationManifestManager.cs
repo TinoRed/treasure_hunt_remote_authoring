@@ -32,7 +32,7 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
     public WayspotManagerPOCO _wayspotManager;
     public String _authoredAnchorDefaultName = "Authored Anchor (Default)";
 
-    private const string host = "http://192.168.1.55";
+    private const string host = "http://192.168.1.94";
     private const string port = "5008";
     private const string get_endpoint = "getmanifest";
 
@@ -80,11 +80,14 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
       //Get the pose where you tap on the screen
       if (_wayspotManager.WayspotService.LocalizationState == LocalizationState.Localized)
       {
+        // if (Input.touchCount>0 && Input.touches[0].phase == TouchPhase.Began) //Check is screen tap was a valid tap
+        // {
         Ray raycast = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
         RaycastHit raycastHit;
 
         if (Physics.Raycast(raycast, out raycastHit))
         {
+          raycastHit.collider.GetComponent<RotateLerp>().ChangeBool();
           foreach (var wayspotAnchorGameObject in _anchoredContent)
           {
             WayspotManagerOnStatusLogChangeEvent("RAYCAST NAME: " + raycastHit.collider.name);
@@ -96,11 +99,12 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
               // float RotationSpeed = 2.0f;
               // wayspotAnchorGameObject.Value.transform.Rotate(Vector3.up * (RotationSpeed * Time.deltaTime));
               // wayspotAnchorGameObject.Value.transform.Rotate(00.0f, 360.0f, 0.0f, Space.Self);
-              wayspotAnchorGameObject.Content.GetComponent<Animation>().Play();
+              // wayspotAnchorGameObject.Content.GetComponent<Animation>().Play();
               break;
             }
           }
         }  
+        // }
       }
     }
 

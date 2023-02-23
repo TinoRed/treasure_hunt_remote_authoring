@@ -103,10 +103,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: chick
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -7685814001943625098, guid: 1d303909039846244be995d90c5e1ede, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1d303909039846244be995d90c5e1ede, type: 3}
+--- !u!1 &8263092488809140725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7279673404590833928, guid: 1d303909039846244be995d90c5e1ede, type: 3}
+  m_PrefabInstance: {fileID: 1705455453075673341}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3083957849728377186 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4424388481757901215, guid: 1d303909039846244be995d90c5e1ede, type: 3}
   m_PrefabInstance: {fileID: 1705455453075673341}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1988878394069097997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8263092488809140725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c17b6d0e718f47a5bd6e92e494856ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
