@@ -6,11 +6,11 @@ TagManager:
   tags:
   - BlueGoal
   - RedGoal
+  - Yeti
+  - Cube
+  - Ball
+  - Chick
   - Logo Chick
-  - Yetone sBURONE
-  - Cubone Sburon
-  - palle
-  - yetoino burino
   layers:
   - Default
   - TransparentFX
