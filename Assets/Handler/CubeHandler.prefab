@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5185912481116115399}
   m_Layer: 5
   m_Name: CubeHandler
-  m_TagString: Cubone Sburon
+  m_TagString: Cube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8509894883272616180}
   m_Layer: 5
   m_Name: YetiHandler
-  m_TagString: yetoino burino
+  m_TagString: Yeti
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

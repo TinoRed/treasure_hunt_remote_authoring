@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 106657725975713672}
   m_Layer: 5
   m_Name: ChickHandler
-  m_TagString: Logo Chick
+  m_TagString: Chick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
