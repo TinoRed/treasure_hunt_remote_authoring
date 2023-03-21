@@ -27,14 +27,17 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
     [SerializeField, HideInInspector] private bool keepSynced = true;
 
     private static LocationManifestManager _instance;
+    private Inventory inventory;
+    [SerializeField] private UI_Inventory uiInventory;
     public static LocationManifestManager Instance => _instance;
 
     public WayspotManagerPOCO _wayspotManager;
     public String _authoredAnchorDefaultName = "Authored Anchor (Default)";
 
-    private const string host = "http://192.168.1.94";
+    private const string host = "http://192.168.1.210";
     private const string port = "5008";
     private const string get_endpoint = "getmanifest";
+    private bool isAddingItem = false;
 
     private string _manifestJson;
 
@@ -67,10 +70,17 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
 
     private readonly HashSet<AnchorStatusTracker> _anchorStatusTrackers = new HashSet<AnchorStatusTracker>();
 
+
+    private void Start() {
+      inventory = new Inventory();
+      uiInventory.setInventory(inventory);
+    }
     private void Awake()
     {
       _instance = this;
       _wayspotManager = new WayspotManagerPOCO();
+      // inventory = new Inventory();
+      // uiInventory.setInventory(inventory);
       LoadManifestsFromMongo();
       AddWayspotManagerStatusListener(WayspotManagerOnStatusLogChangeEvent);
     }
@@ -95,7 +105,11 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
             if (raycastHit.collider.name.ToLower().Equals(wayspotAnchorGameObject.ReadableName.ToLower().Split(new string[] { "handler" }, StringSplitOptions.None)[0])) {
               Debug.Log("Tap on: " + wayspotAnchorGameObject.ReadableName);
               // DO SOMETHING
+              
               WayspotManagerOnStatusLogChangeEvent("Complimenti! Hai trovato " + wayspotAnchorGameObject.Content.tag);
+              if (!isAddingItem){
+                StartCoroutine(AddItemToInventory(wayspotAnchorGameObject.Content.tag));
+              }
               // float RotationSpeed = 2.0f;
               // wayspotAnchorGameObject.Value.transform.Rotate(Vector3.up * (RotationSpeed * Time.deltaTime));
               // wayspotAnchorGameObject.Value.transform.Rotate(00.0f, 360.0f, 0.0f, Space.Self);
@@ -106,6 +120,33 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
         }  
         // }
       }
+    }
+
+  private void AddItemInventory(string objectTag)
+  {
+    Item.ItemType switchItemType;
+    switch (objectTag) 
+      {
+          default:
+          case "Yeti": switchItemType = Item.ItemType.Yeti;
+            break;
+          case "Ball": switchItemType = Item.ItemType.Ball;
+            break;
+          case "Cube": switchItemType = Item.ItemType.Cube;
+            break;
+          case "Chick": switchItemType = Item.ItemType.Chick;
+            break;
+      }
+      inventory.AddItem(new Item{itemType = switchItemType});
+      uiInventory.RefreshInventoryItems();
+      isAddingItem = false;
+  }
+    IEnumerator AddItemToInventory(string objectTag)
+    {
+      isAddingItem = true;
+      AddItemInventory(objectTag);
+      yield return null;
+      isAddingItem = false;
     }
 
     private void OnDestroy()
