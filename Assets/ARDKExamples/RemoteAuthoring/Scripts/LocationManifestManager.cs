@@ -34,10 +34,9 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
     public WayspotManagerPOCO _wayspotManager;
     public String _authoredAnchorDefaultName = "Authored Anchor (Default)";
 
-    private const string host = "http://192.168.1.210";
+    private const string host = "http://192.168.1.109";
     private const string port = "5008";
     private const string get_endpoint = "getmanifest";
-    private bool isAddingItem = false;
 
     private string _manifestJson;
 
@@ -92,7 +91,8 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
       {
         // if (Input.touchCount>0 && Input.touches[0].phase == TouchPhase.Began) //Check is screen tap was a valid tap
         // {
-        Ray raycast = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+        Touch touch = Input.GetTouch(0);
+        Ray raycast = Camera.main.ScreenPointToRay(touch.position);
         RaycastHit raycastHit;
 
         if (Physics.Raycast(raycast, out raycastHit))
@@ -107,13 +107,9 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
               // DO SOMETHING
               
               WayspotManagerOnStatusLogChangeEvent("Complimenti! Hai trovato " + wayspotAnchorGameObject.Content.tag);
-              if (!isAddingItem){
+              if (touch.phase == TouchPhase.Ended){ // controllare TouchPhase.Ended su Input se vero allora fai coroutine
                 StartCoroutine(AddItemToInventory(wayspotAnchorGameObject.Content.tag));
               }
-              // float RotationSpeed = 2.0f;
-              // wayspotAnchorGameObject.Value.transform.Rotate(Vector3.up * (RotationSpeed * Time.deltaTime));
-              // wayspotAnchorGameObject.Value.transform.Rotate(00.0f, 360.0f, 0.0f, Space.Self);
-              // wayspotAnchorGameObject.Content.GetComponent<Animation>().Play();
               break;
             }
           }
@@ -139,14 +135,11 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
       }
       inventory.AddItem(new Item{itemType = switchItemType});
       uiInventory.RefreshInventoryItems();
-      isAddingItem = false;
   }
     IEnumerator AddItemToInventory(string objectTag)
     {
-      isAddingItem = true;
       AddItemInventory(objectTag);
       yield return null;
-      isAddingItem = false;
     }
 
     private void OnDestroy()
