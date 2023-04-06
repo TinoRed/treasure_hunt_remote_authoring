@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/ARDKExamples/MainMenu/MainMenu.unity
+    guid: ab0c0e9583f564c7b9608ca723a010e0
+  - enabled: 1
     path: Assets/ARDKExamples/RemoteAuthoring/RemoteAuthoring.unity
     guid: b42b611c6ac6c4128ae1090ed0ec3121
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   m_configObjects: {}
