@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -259,8 +259,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1556808593}
   - {fileID: 1992094346}
+  - {fileID: 1556808593}
   - {fileID: 1196203960}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -283,6 +283,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI_Inventory: {fileID: 1992094345}
+  panel: {fileID: 1733770280}
+  footer: {fileID: 497865981}
 --- !u!1 &408361779
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +364,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408361779}
   m_CullTransparentMesh: 1
+--- !u!1 &497865981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8120274256146368765, guid: 43cea8e46d25a451bb860bb51d229f83, type: 3}
+  m_PrefabInstance: {fileID: 1196203959}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &506219157
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -854,10 +861,10 @@ RectTransform:
   m_Father: {fileID: 1992094346}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 190, y: 445}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1440316524
 MonoBehaviour:
@@ -872,14 +879,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.085725546, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5ca3d3d1c38fb4a5fbaf62851401ea95, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fcd48e45ed998134097b02017b32be07, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1004,7 +1011,7 @@ RectTransform:
   m_Children:
   - {fileID: 408361780}
   m_Father: {fileID: 119465159}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1194,6 +1201,11 @@ MonoBehaviour:
   yetiSprite: {fileID: 21300000, guid: 2b20288e417cf4deb934a0ce56d7e6bd, type: 3}
   cubeSprite: {fileID: 21300000, guid: 57501cf93a5e0490a97f57b2249f5049, type: 3}
   ballSprite: {fileID: 21300000, guid: 31e7e0c5ce4fd4200a01bfa65a7280f7, type: 3}
+--- !u!1 &1733770280 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2572107620751357161, guid: 43cea8e46d25a451bb860bb51d229f83, type: 3}
+  m_PrefabInstance: {fileID: 1196203959}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1829151716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1422,7 +1434,7 @@ RectTransform:
   - {fileID: 1440316523}
   - {fileID: 1122377814}
   m_Father: {fileID: 119465159}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
