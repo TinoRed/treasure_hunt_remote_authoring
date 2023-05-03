@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -846,7 +846,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1440316523
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1265,10 +1265,20 @@ MonoBehaviour:
     - Name: ChickHandler_1
       Payload: ChUI2IPW/4Pxk6RUEJbXlpzLgc+OhAEYk8aNo9uX/QIqOwoVCKSRiojkwIikehCxkef0gfDvyaIBEh0KDw38Et88FQrXozwdR+XQvRIKFV1LJj8lKaJCPx0AAIA/
   _anchorPrefabArray:
-  - {fileID: 9172557234114947477, guid: 5b1753ea5dab14ab7ba0de8156fd91a1, type: 3}
-  - {fileID: 2914742047630388689, guid: 88322b0430ea645528dd75482fcefdb0, type: 3}
+  - {fileID: 911502854310832957, guid: 5d1ecc0d453ef8b499144929df313cbd, type: 3}
+  - {fileID: 8754413678113017046, guid: 5bb13828afccf4a44943c5f2a5714ca5, type: 3}
   - {fileID: 1025726332709229890, guid: caf59ce8bd78e44c1a387ff466f90b7c, type: 3}
-  - {fileID: 6905705373318001708, guid: e4afdbe182aa5406b91c9d44bddacf80, type: 3}
+  - {fileID: 1185858816859052587, guid: 42898314f4627b7488861b46602d266a, type: 3}
+  _inventoryPNGColorArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _inventoryPNGBlackArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   syncPrefabSelection: 1
   keepSynced: 1
   uiInventory: {fileID: 1992094347}
@@ -1301,19 +1311,19 @@ MonoBehaviour:
   - ReadableName: YetiHandler_1_b5a0373cb1a141e0b657c1d103c328fc.107
     ManifestID: 3
     ContentScale: {x: 1, y: 1, z: 1}
-    Content: {fileID: 9172557234114947477, guid: 5b1753ea5dab14ab7ba0de8156fd91a1, type: 3}
+    Content: {fileID: 0}
   - ReadableName: YetiHandler_2_b5a0373cb1a141e0b657c1d103c328fc.107
     ManifestID: 3
     ContentScale: {x: 1, y: 1, z: 1}
-    Content: {fileID: 9172557234114947477, guid: 5b1753ea5dab14ab7ba0de8156fd91a1, type: 3}
+    Content: {fileID: 0}
   - ReadableName: CubeHandler_1_b5a0373cb1a141e0b657c1d103c328fc.107
     ManifestID: 3
     ContentScale: {x: 1, y: 1, z: 1}
-    Content: {fileID: 2914742047630388689, guid: 88322b0430ea645528dd75482fcefdb0, type: 3}
+    Content: {fileID: 0}
   - ReadableName: ChickHandler_1_b5a0373cb1a141e0b657c1d103c328fc.107
     ManifestID: 3
     ContentScale: {x: 1, y: 1, z: 1}
-    Content: {fileID: 1025726332709229890, guid: caf59ce8bd78e44c1a387ff466f90b7c, type: 3}
+    Content: {fileID: 0}
 --- !u!4 &1829151718
 Transform:
   m_ObjectHideFlags: 0

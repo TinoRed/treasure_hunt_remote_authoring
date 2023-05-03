@@ -5,8 +5,8 @@ import pymongo
 
 app = Flask(__name__)
 
-user = "agost"
-password = "agost"
+user = "manuel_p9"
+password = "3qKBtw4DPanm5hAk"
 
 @app.route('/coffee', methods=['GET'])
 def test():
@@ -15,7 +15,7 @@ def test():
 
 @app.route('/getmanifest', methods=['GET'])
 def mongoget():
-    client = pymongo.MongoClient("mongodb+srv://{}:{}@cluster0.vhjvg.mongodb.net/?retryWrites=true&w=majority".format(user, password))
+    client = pymongo.MongoClient("mongodb+srv://{}:{}@cluster0.20goldo.mongodb.net/?retryWrites=true&w=majority".format(user, password))
     db = client.test
     collection  = db.remoteAuthoring
     try:

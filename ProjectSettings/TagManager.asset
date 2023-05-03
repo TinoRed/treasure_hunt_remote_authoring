@@ -11,6 +11,9 @@ TagManager:
   - Ball
   - Chick
   - Logo Chick
+  - Logo Reply
+  - Logo Berries
+  - Logo Pepper
   layers:
   - Default
   - TransparentFX

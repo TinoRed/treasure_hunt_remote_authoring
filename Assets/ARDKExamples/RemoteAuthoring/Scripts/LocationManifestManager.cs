@@ -22,6 +22,10 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
     [SerializeField] private RuntimeVPSLocationManifest[] _manifests;
 
     [SerializeField] private GameObject[] _anchorPrefabArray; 
+
+    [SerializeField] private GameObject[] _inventoryPNGColorArray; 
+
+    [SerializeField] private GameObject[] _inventoryPNGBlackArray; 
     
     [SerializeField, HideInInspector] private bool syncPrefabSelection = true;
     [SerializeField, HideInInspector] private bool keepSynced = true;
@@ -97,7 +101,6 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
 
         if (Physics.Raycast(raycast, out raycastHit))
         {
-          raycastHit.collider.GetComponent<RotateLerp>().ChangeBool();
           foreach (var wayspotAnchorGameObject in _anchoredContent)
           {
             WayspotManagerOnStatusLogChangeEvent("RAYCAST NAME: " + raycastHit.collider.name);
@@ -108,7 +111,8 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
               
               WayspotManagerOnStatusLogChangeEvent("Complimenti! Hai trovato " + wayspotAnchorGameObject.Content.tag);
               if (touch.phase == TouchPhase.Ended){ // controllare TouchPhase.Ended su Input se vero allora fai coroutine
-                StartCoroutine(AddItemToInventory(wayspotAnchorGameObject.Content.tag));
+                // StartCoroutine(AddItemToInventory(wayspotAnchorGameObject.Content.tag));
+                raycastHit.collider.GetComponent<Animator>().SetBool("isRunning", true);
               }
               break;
             }
