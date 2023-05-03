@@ -101,6 +101,7 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
 
         if (Physics.Raycast(raycast, out raycastHit))
         {
+          int element_index = 0;
           foreach (var wayspotAnchorGameObject in _anchoredContent)
           {
             WayspotManagerOnStatusLogChangeEvent("RAYCAST NAME: " + raycastHit.collider.name);
@@ -111,40 +112,23 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
               
               WayspotManagerOnStatusLogChangeEvent("Complimenti! Hai trovato " + wayspotAnchorGameObject.Content.tag);
               if (touch.phase == TouchPhase.Ended){ // controllare TouchPhase.Ended su Input se vero allora fai coroutine
-                // StartCoroutine(AddItemToInventory(wayspotAnchorGameObject.Content.tag));
+                AddItemToInventory(element_index);
                 raycastHit.collider.GetComponent<Animator>().SetBool("isRunning", true);
               }
               break;
             }
+            element_index++;
           }
         }  
         // }
       }
     }
 
-  private void AddItemInventory(string objectTag)
+  private void AddItemToInventory(int index)
   {
-    Item.ItemType switchItemType;
-    switch (objectTag) 
-      {
-          default:
-          case "Yeti": switchItemType = Item.ItemType.Yeti;
-            break;
-          case "Ball": switchItemType = Item.ItemType.Ball;
-            break;
-          case "Cube": switchItemType = Item.ItemType.Cube;
-            break;
-          case "Chick": switchItemType = Item.ItemType.Chick;
-            break;
-      }
-      inventory.AddItem(new Item{itemType = switchItemType});
-      uiInventory.RefreshInventoryItems();
+    _inventoryPNGColorArray[index].SetActive(true);
+    _inventoryPNGBlackArray[index].SetActive(false);
   }
-    IEnumerator AddItemToInventory(string objectTag)
-    {
-      AddItemInventory(objectTag);
-      yield return null;
-    }
 
     private void OnDestroy()
     {
