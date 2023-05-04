@@ -38,7 +38,7 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
     public WayspotManagerPOCO _wayspotManager;
     public String _authoredAnchorDefaultName = "Authored Anchor (Default)";
 
-    private const string host = "http://192.168.1.109";
+    private const string host = "http://192.168.103.213";
     private const string port = "5008";
     private const string get_endpoint = "getmanifest";
 
@@ -82,8 +82,6 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
     {
       _instance = this;
       _wayspotManager = new WayspotManagerPOCO();
-      // inventory = new Inventory();
-      // uiInventory.setInventory(inventory);
       LoadManifestsFromMongo();
       AddWayspotManagerStatusListener(WayspotManagerOnStatusLogChangeEvent);
     }
@@ -93,8 +91,6 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
       //Get the pose where you tap on the screen
       if (_wayspotManager.WayspotService.LocalizationState == LocalizationState.Localized)
       {
-        // if (Input.touchCount>0 && Input.touches[0].phase == TouchPhase.Began) //Check is screen tap was a valid tap
-        // {
         Touch touch = Input.GetTouch(0);
         Ray raycast = Camera.main.ScreenPointToRay(touch.position);
         RaycastHit raycastHit;
@@ -105,13 +101,12 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
           foreach (var wayspotAnchorGameObject in _anchoredContent)
           {
             WayspotManagerOnStatusLogChangeEvent("RAYCAST NAME: " + raycastHit.collider.name);
-            // splittare nome al wayspotanchor data name per "_" e "-" per riconoscere nome manifest e nome anchor
-            if (raycastHit.collider.name.ToLower().Equals(wayspotAnchorGameObject.ReadableName.ToLower().Split(new string[] { "handler" }, StringSplitOptions.None)[0])) {
+            if (raycastHit.collider.name.ToLower().Equals(wayspotAnchorGameObject.ReadableName.ToLower().Split(new string[] { "handler" }, StringSplitOptions.None)[0])) 
+            {
               Debug.Log("Tap on: " + wayspotAnchorGameObject.ReadableName);
-              // DO SOMETHING
               
-              WayspotManagerOnStatusLogChangeEvent("Complimenti! Hai trovato " + wayspotAnchorGameObject.Content.tag);
-              if (touch.phase == TouchPhase.Ended){ // controllare TouchPhase.Ended su Input se vero allora fai coroutine
+              WayspotManagerOnStatusLogChangeEvent("Great! You found " + wayspotAnchorGameObject.Content.tag);
+              if (touch.phase == TouchPhase.Ended){ 
                 AddItemToInventory(element_index);
                 raycastHit.collider.GetComponent<Animator>().SetBool("isRunning", true);
               }
@@ -120,15 +115,14 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
             element_index++;
           }
         }  
-        // }
       }
     }
 
-  private void AddItemToInventory(int index)
-  {
-    _inventoryPNGColorArray[index].SetActive(true);
-    _inventoryPNGBlackArray[index].SetActive(false);
-  }
+    private void AddItemToInventory(int index)
+    {
+      _inventoryPNGColorArray[index].SetActive(true);
+      _inventoryPNGBlackArray[index].SetActive(false);
+    }
 
     private void OnDestroy()
     {
@@ -138,8 +132,7 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
     public void PopulateAnchoredContentCustom()
     {
       List<AnchoredContent> anchoredContents = new List<AnchoredContent>();
-      // _manifests = SyncManifests(_manifests);
-      // _manifests = SyncManifestsCustom(_manifests);
+
       int locID = 0;
       for (int i = 0; i < _manifests.Length; i++)
       {
@@ -147,7 +140,6 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
         var objScale = Vector3.one;
         foreach (var wayspotAnchorData in vpsLocationManifest.AuthoredAnchors)
         {
-          // controlliamo l'authored anchor della mesh dell'ambiente (non va associato nessun prefab)
           if (wayspotAnchorData.Name.Equals(_authoredAnchorDefaultName))
           {
             continue;
@@ -155,15 +147,6 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
           GameObject obj = null;
           if (SyncPrefabSelection)
           {
-            //you can only read from associated prefabs in editor
-            //if trying to do this in a build, you'll likely want to create your own lookup dictionary
-            //using anchor identifier as a reference
-            //  prendi il nome dell'authoredAnchor, splitta per uno special character (ad esempio "_") per ottenere il nome del prefab.
-            // ad esempio: l'authoredAnchor "Yeti_1" userà il prefab "Yeti"
-            // aggiungere il codice per assegnare correttamente il prefab nella lista _anchorPrefabArray a partire dal nome estratto.
-            
-            // inizializziamo il prefab scelto come il primo della lista di prefab, per evitare che nel caso di errori sui nomi non venga selezionato
-            // nessun prefab nel ciclo for sottostante.
             obj = _anchorPrefabArray[0];
             for (int j = 0; j < _anchorPrefabArray.Length; j++)
             {
@@ -173,7 +156,6 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
                 break;
               }
             }
-            // obj = wayspotAnchorData.GetAssociatedEditorPrefab(vpsLocationManifest.LocationName, out objScale);
           }
 
           var newContent =
@@ -206,14 +188,15 @@ namespace Niantic.ARDKExamples.RemoteAuthoring
       if (get_request.result != UnityWebRequest.Result.Success) {
         Debug.Log(get_request.error);
       }
-      else {
+      else 
+      {
         // se la risposta non è vuota, seleziona i payload
         var jsonText = get_request.downloadHandler.text;
         _manifestJson = jsonText;
         var manifest = JsonUtility.FromJson<RuntimeVPSLocationManifest>(_manifestJson);
         _manifests = new RuntimeVPSLocationManifest[] {manifest};
         PopulateAnchoredContentCustom();
-          }
+      }
     }
 
     private void WayspotManagerOnStatusLogChangeEvent(string statusmessage)
